@@ -35,3 +35,7 @@ jobs:
     - name: Deploy Image to Elastic Kubernetes Service
       run: |
           aws eks --region eu-west-1 update-kubeconfig --name onemedical-stg
+          kubectl create deployment monolith --image=public.ecr.aws/m5f9r5o3/monolith:latest
+          kubectl expose deployment monolith --type=LoadBalancer --port 80 --target-port 8080
+
+
